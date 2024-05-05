@@ -2,24 +2,12 @@
 import { formatDate } from '@/utils/datetime'
 import { onMounted } from 'vue'
 
-const { id, date } = defineProps({
-  id: {
-    type: String,
-    required: true
-  },
-  title: {
-    type: String,
-    required: true
-  },
-  location: {
-    type: String,
-    required: true
-  },
-  date: {
-    type: String,
-    required: true
-  }
-})
+const { id, date } = defineProps<{
+  id: string
+  date: string
+  title: string
+  location: string
+}>()
 
 const formatedDate = formatDate(date)
 

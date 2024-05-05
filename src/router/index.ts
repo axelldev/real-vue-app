@@ -8,7 +8,8 @@ export const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      props: (route) => ({ page: parseInt(route.query.page as string) || 1 })
     },
     {
       path: '/about',
@@ -23,6 +24,7 @@ export const router = createRouter({
     },
     {
       path: '/:pathMatch(.*)*',
+      name: 'not-found',
       component: () => import('@/views/NotFoundView.vue')
     }
   ]

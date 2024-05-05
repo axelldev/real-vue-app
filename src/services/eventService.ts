@@ -10,8 +10,10 @@ export const eventApiClient = axios.create({
   }
 })
 
-const getEvents = () => {
-  return eventApiClient.get<EventData[]>('events')
+const getEvents = (params: { page: number; limit: number }) => {
+  return eventApiClient.get<EventData[]>('events', {
+    params
+  })
 }
 
 const getEvent = (id: string) => {
