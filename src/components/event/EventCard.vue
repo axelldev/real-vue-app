@@ -15,7 +15,7 @@ onMounted(async () => {})
 </script>
 
 <template>
-  <RouterLink :to="{ name: 'event-detail', params: { id } }">
+  <router-link :to="{ name: 'event-detail', params: { id } }">
     <article
       class="flex flex-col items-center group cursor-pointer p-6 border border-zinc-700 rounded-md transition-colors hover:border-green-300 w-[350px]"
     >
@@ -24,5 +24,5 @@ onMounted(async () => {})
       </h3>
       <span class="text-zinc-400">@{{ location }} on {{ formatedDate }}</span>
     </article>
-  </RouterLink>
+  </router-link>
 </template>

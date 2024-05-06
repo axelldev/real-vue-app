@@ -3,10 +3,13 @@ import EventCard from './EventCard.vue'
 import type { EventData } from '@/types'
 import EventService from '@/services/eventService'
 import { computed, ref, watchEffect } from 'vue'
+import { useRouter } from 'vue-router'
 
 const props = defineProps<{
   page?: number
 }>()
+
+const router = useRouter()
 
 const page = computed(() => props.page || 1)
 const hasMore = ref(false)
@@ -14,7 +17,7 @@ const hasMore = ref(false)
 const loading = ref(false)
 const events = ref<EventData[]>([])
 
-watchEffect(async (OnCleanUp) => {
+watchEffect(async () => {
   loading.value = true
   try {
     const data = await EventService.getEvents({
@@ -27,11 +30,9 @@ watchEffect(async (OnCleanUp) => {
       hasMore.value = true
       events.value = data.data
     }
-    OnCleanUp(() => {
-      console.log('clean up')
-    })
   } catch (error) {
     console.error(error)
+    router.push({ name: 'NetworkError' })
   } finally {
     loading.value = false
   }
@@ -49,7 +50,7 @@ watchEffect(async (OnCleanUp) => {
       :location
       :key="id"
     />
-    <div class="w-full flex gap-10">
+    <div class="flex justify-center items-center gap-10">
       <router-link
         class="text-start flex-grow"
         v-if="page > 1"

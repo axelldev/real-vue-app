@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import EventList from '@/components/EventList.vue'
+import EventList from '@/components/event/EventList.vue'
 import SectionContainer from '@/components/SectionContainer.vue'
 import SectionTitle from '@/components/SectionTitle.vue'
 
